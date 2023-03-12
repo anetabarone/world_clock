@@ -7,7 +7,7 @@ function updateTime() {
     let losAngelesTime = moment().tz("America/Los_Angeles");
     losAngelesDateElement.innerHTML = losAngelesTime.format("MMMM Do YYYY");
     losAngelesTimeElement.innerHTML = losAngelesTime.format(
-      "h:mm:ss:SSS [<small>]A[</small>]"
+      "h:mm:ss [<small>]A[</small>]"
     );
   }
   //Paris
@@ -18,7 +18,18 @@ function updateTime() {
     let parisTime = moment().tz("Europe/Paris");
     parisDateElement.innerHTML = parisTime.format("MMMM Do YYYY");
     parisTimeElement.innerHTML = parisTime.format(
-      "h:mm:ss:SSS [<small>]A[</small>]"
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
+  //Honolulu
+  let honoluluElement = document.querySelector("#honolulu");
+  if (honoluluElement) {
+    let honoluluDateElement = honoluluElement.querySelector(".date");
+    let honoluluTimeElement = honoluluElement.querySelector(".time");
+    let honoluluTime = moment().tz("Pacific/Honolulu");
+    honoluluDateElement.innerHTML = honoluluTime.format("MMMM Do YYYY");
+    honoluluTimeElement.innerHTML = honoluluTime.format(
+      "h:mm:ss [<small>]A[</small>]"
     );
   }
 }
@@ -41,11 +52,12 @@ function updateCity(event) {
               "h:m:ss"
             )} <small>${cityTime.format("A")}</small></div>
         </div>
+        <a href="index.html">All cities</a>
 `;
 }
 
 updateTime();
-setInterval(updateTime, 1);
+setInterval(updateTime, 1000);
 
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
